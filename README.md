@@ -115,8 +115,6 @@ Each screenshot comes in light and dark mode (GitHub shows the one that matches 
 </tr>
 </table>
 
-Regenerate them with `npm run screenshots` (see [Regenerating screenshots](#regenerating-screenshots)).
-
 ## Getting started
 
 Requires **Node.js 20+**.
