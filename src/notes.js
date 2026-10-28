@@ -307,11 +307,18 @@ export function initNotes(strip, addButton) {
       </div>`);
     const c = editor.view.coordsAtPos(end);
     hint.style.top = `${c.bottom - scroll.getBoundingClientRect().top + scroll.scrollTop + 8}px`;
+    // Spare room below the text so the banner is never flush against the note's footer.
+    scroll.style.setProperty('--hint-room', '120px');
     scroll.appendChild(hint);
-    hint.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    // Bring the whole banner into view (after the paste's own scroll-to-caret has settled).
+    setTimeout(() => {
+      const bottom = hint.offsetTop + hint.offsetHeight + 16;
+      if (bottom > scroll.scrollTop + scroll.clientHeight) scroll.scrollTo({ top: bottom - scroll.clientHeight, behavior: 'smooth' });
+    }, 150);
 
     const dismiss = () => {
       clearTimeout(timer);
+      scroll.style.removeProperty('--hint-room');
       editor.off('update', dismiss);
       hint.classList.add('leaving');
       setTimeout(() => hint.remove(), 180);

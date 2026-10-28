@@ -9,6 +9,7 @@
     "dev": "node scripts/dev.mjs",
     "build": "vite build",
     "start": "vite build && electron .",
+    "screenshots": "node scripts/screenshots.mjs",
     "dist": "vite build && electron-builder --win nsis portable",
     "dist:dir": "vite build && electron-builder --win dir"
   },

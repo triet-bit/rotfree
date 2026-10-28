@@ -22,3 +22,8 @@ Thumbs.db
 packaging/arch/pkg/
 packaging/arch/src/
 packaging/arch/*.pkg.tar.zst
+
+# screenshot generator (local tooling; the generated docs/screenshots are kept)
+scripts/screenshots.mjs
+scripts/screenshot-seed.mjs
+scripts/scenes/

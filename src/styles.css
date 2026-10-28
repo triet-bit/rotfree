@@ -2253,6 +2253,7 @@ body.no-srs .callout-review { display: none !important; }
 /* ---------- paste hint ---------- */
 
 .note-scroll { position: relative; }
+.note-scroll::after { content: ''; display: block; height: var(--hint-room, 0); }
 .paste-hint {
   position: absolute;
   left: 14px;
