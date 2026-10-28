@@ -1,0 +1,66 @@
+{
+  "name": "floating-workspace",
+  "productName": "RotFree",
+  "version": "1.0.0",
+  "description": "Floating task list + sticky notes for Windows, Apple-style",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "vite build",
+    "start": "vite build && electron .",
+    "dist": "vite build && electron-builder --win nsis portable",
+    "dist:dir": "vite build && electron-builder --win dir"
+  },
+  "linux": { "target": ["AppImage"], "icon": "build/icon.jpeg", "category": "Office" },
+  "build": {
+    "appId": "com.rotfree.app",
+    "productName": "RotFree",
+    "files": [
+      "dist/**",
+      "electron/**",
+      "build/icon.jpeg",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "win": {
+      "icon": "build/icon.jpeg",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "portable": {
+      "artifactName": "RotFree-Portable-${version}.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0",
+    "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@tiptap/core": "^3.32.0",
+    "@tiptap/extension-image": "^3.32.0",
+    "@tiptap/extension-list": "^3.32.0",
+    "@tiptap/extension-text-style": "^3.32.0",
+    "@tiptap/extensions": "^3.32.0",
+    "@tiptap/pm": "^3.32.0",
+    "@tiptap/starter-kit": "^3.32.0",
+    "emojibase-data": "^18.0.0",
+    "sortablejs": "^1.15.7"
+  },
+  "allowScripts": {
+    "electron@45.1.0": true,
+    "electron-winstaller@5.4.0": true
+  }
+}

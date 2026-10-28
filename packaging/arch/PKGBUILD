@@ -1,0 +1,31 @@
+# Local package for Arch-based systems. Build the app first:
+#   npx vite build && npx electron-builder --linux dir
+# then, from this folder:  makepkg -f && sudo pacman -U rotfree-*.pkg.tar.zst
+pkgname=rotfree
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='Floating tasks and notes that keep you focused'
+arch=('x86_64')
+license=('custom')
+depends=('gtk3' 'nss' 'alsa-lib' 'libxss' 'libnotify')
+options=('!strip')
+_root="$startdir/../.."
+
+package() {
+  install -d "$pkgdir/opt/rotfree" "$pkgdir/usr/bin" "$pkgdir/usr/share/applications"
+  cp -a "$_root/release/linux-unpacked/." "$pkgdir/opt/rotfree/"
+  ln -s /opt/rotfree/floating-workspace "$pkgdir/usr/bin/rotfree"
+  install -Dm644 "$_root/build/icon.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/rotfree.png"
+  cat > "$pkgdir/usr/share/applications/rotfree.desktop" <<DESKTOP
+[Desktop Entry]
+Type=Application
+Name=Rotfree
+Comment=Floating tasks and notes that keep you focused
+Exec=rotfree
+Icon=rotfree
+Categories=Office;Utility;
+Terminal=false
+StartupWMClass=RotFree
+DESKTOP
+  chmod 4755 "$pkgdir/opt/rotfree/chrome-sandbox"
+}

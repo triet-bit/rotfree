@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: fw-img: https: http:; font-src 'self' data:; connect-src 'self' ws: fw-img:"
+    />
+    <title>Floating Workspace</title>
+  </head>
+  <body>
+    <div class="app" id="app" data-mode="split">
+      <header class="titlebar">
+        <div class="win-controls">
+          <button class="win-btn win-close" id="btn-close" title="Close to tray" aria-label="Close">
+            <svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6" /></svg>
+          </button>
+          <button class="win-btn win-min" id="btn-min" title="Minimize" aria-label="Minimize">
+            <svg viewBox="0 0 12 12"><path d="M2.5 6h7" /></svg>
+          </button>
+        </div>
+
+        <div class="segmented" id="mode-switch" role="tablist">
+          <span class="segmented-thumb"></span>
+          <button role="tab" data-mode="split">Split View</button>
+          <button role="tab" data-mode="tasks">Tasks Only</button>
+          <button role="tab" data-mode="notes">Notes Only</button>
+        </div>
+
+        <div class="titlebar-right">
+          <div class="tb-tools">
+            <button class="tool-btn" id="btn-review" title="Ôn tập" aria-label="Ôn tập" hidden><span class="tool-icon"></span><b class="badge-count" hidden></b></button>
+            <button class="tool-btn" id="btn-stats" title="Thống kê" aria-label="Thống kê"></button>
+            <button class="tool-btn" id="btn-settings" title="Settings" aria-label="Settings"></button>
+          </div>
+          <div class="clock">
+            <div class="clock-time" id="clock-time">--:--</div>
+            <div class="clock-date" id="clock-date"></div>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="panel panel-tasks" id="panel-tasks">
+          <div class="panel-head">
+            <h2>Task Timeline</h2>
+            <button class="chip-btn" id="btn-today" hidden>Today</button>
+          </div>
+          <div class="strip" id="task-strip"></div>
+          <div class="strip-dots" id="task-dots"></div>
+        </section>
+
+        <section class="panel panel-notes" id="panel-notes">
+          <div class="panel-head">
+            <h2>Sticky Notes</h2>
+            <button class="icon-btn add-note" id="btn-add-note" title="New note" aria-label="New note">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" /></svg>
+            </button>
+          </div>
+          <div class="strip" id="note-strip"></div>
+          <div class="strip-dots" id="note-dots"></div>
+        </section>
+      </main>
+
+      <section class="focus-layer" id="focus-layer" aria-live="polite"></section>
+
+      <footer class="statusbar">
+        <button class="ontop-toggle" id="btn-ontop" title="Keep window above other apps">
+          <svg viewBox="0 0 16 16"><path d="M10.5 2.5l3 3-2 1-2.5 2.5.5 3-1 1-2.5-2.5L3 13.5 2.5 13l2.5-3L2.5 7.5l1-1 3 .5L9 4.5z" /></svg>
+          <span>Always on top</span>
+        </button>
+        <span class="hint">Shift + Scroll to browse</span>
+        <span class="status-clock" id="status-clock"></span>
+        <span class="save-state" id="save-state"><i></i><span>Saved</span></span>
+      </footer>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

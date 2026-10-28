@@ -1,0 +1,24 @@
+# dependencies and build output
+node_modules/
+dist/
+release/
+
+# design brief and reference screenshots
+prompt.md
+images/
+
+# logs and OS junk
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# editor and local env
+.vscode/
+.idea/
+.env
+.env.*
+.claude/
+packaging/arch/pkg/
+packaging/arch/src/
+packaging/arch/*.pkg.tar.zst
